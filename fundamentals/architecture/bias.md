@@ -38,6 +38,6 @@ Where:
 
 Let's see how modifying the bias might impact the function.
 
-![Sigmoid Function with Different Biases](docs\fundamentals\architecture\bias\sigmoid_function_bias.png)
+![Sigmoid Function with Different Biases](Neural-Network-Notes/docs/fundamentals/architecture/bias/sigmoid_function_bias.png)
 
 As it can be seen on the image, the change of the bias has a direct impact over the activation function. Despite it not making it any steeper nor gradual, it shifted it. Whenever the bias is increased, a lower output of w*x will be able to activate the neuron.

@@ -190,27 +190,31 @@ Use case example: Part-of-speech tagging, where each word (input) corresponds to
 
 ```mermaid
 graph LR
-    X1[X₁] --> ENC1((Encoder))
-    A0[a₀] --> ENC1
-    ENC1 --> A1[a₁]
+    subgraph Encoder
+        X1[X₁] --> ENC1((RNN))
+        A0[a₀] --> ENC1
+        ENC1 --> A1[a₁]
+        
+        A1 --> ENC2((RNN))
+        X2[X₂] --> ENC2
+        ENC2 --> A2[a₂]
+    end
     
-    A1 --> ENC2((Encoder))
-    X2[X₂] --> ENC2
-    ENC2 --> A2[a₂]
-    
-    A2 --> DEC1((Decoder))
-    DEC1 --> B1[b₁]
-    DEC1 --> Y1[y₁]
-    
-    B1 --> DEC2((Decoder))
-    DEC2 --> B2[b₂]
-    DEC2 --> Y2[y₂]
-    
-    B2 --> DEC3((Decoder))
-    DEC3 --> B3[b₃]
-    DEC3 --> Y3[y₃]
-    
-    B3 --> DOTS[...]
+    subgraph Decoder
+        A2 --> DEC1((RNN))
+        DEC1 --> B1[b₁]
+        DEC1 --> Y1[y₁]
+        
+        B1 --> DEC2((RNN))
+        DEC2 --> B2[b₂]
+        DEC2 --> Y2[y₂]
+        
+        B2 --> DEC3((RNN))
+        DEC3 --> B3[b₃]
+        DEC3 --> Y3[y₃]
+        
+        B3 --> DOTS[...]
+    end
     
     style ENC1 fill:#f9f,stroke:#333,stroke-width:4px
     style ENC2 fill:#f9f,stroke:#333,stroke-width:4px
@@ -224,6 +228,9 @@ graph LR
     style B2 fill:#afa,stroke:#333,stroke-width:2px
     style B3 fill:#afa,stroke:#333,stroke-width:2px
 ```
+
+Pink `RNN` units receive the input sequence as input and form the Encoder part of the network, whereas blue `RNN` units receive the embedding produced by the encoder as input, which is further processed by them. Despite that, pink and blue `RNN` units share the same weights
+
 
 Use case example: Machine translation, where the input sequence (source language) may have a different length than the output sequence (target language).
 
@@ -265,7 +272,7 @@ This is essentially a standard neural network, not an RNN:
 
 ```mermaid
 graph LR
-    X[X] --> NN((NN))
+    X[X] --> NN((RNN))
     NN --> Y[y]
     
     style NN fill:#f9f,stroke:#333,stroke-width:4px

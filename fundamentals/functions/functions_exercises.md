@@ -7,19 +7,19 @@
 Given the following plots, identify the activation function corresponding to each plot.
 - `plot1`
 
-![plot 1](/docs/images/fundamentals/functions/functions/plot_1.jpg)
+![plot 1](/docs/images/fundamentals/functions/activation_functions/plot_1.jpg)
 ****
 - `plot2`
 
-![plot2](/docs/images/fundamentals/functions/functions/plot_2.jpg)
+![plot2](/docs/images/fundamentals/functions/activation_functions/plot_2.jpg)
 ****
 - `plot3`
 
-![plot3](/docs/images/fundamentals/functions/functions/plot_3.jpg)
+![plot3](/docs/images/fundamentals/functions/activation_functions/plot_3.jpg)
 ****
 - `plot4`
 
-![plot4](/docs/images/fundamentals/functions/functions/plot_4.jpg)
+![plot4](/docs/images/fundamentals/functions/activation_functions/plot_4.jpg)
 
 
 
@@ -58,7 +58,7 @@ $\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}}$
 $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$
 
 - **Leaky ReLU**:
-$\text{Leaky\_ReLU}(x) = \max(\alpha x, x)$
+$\text{Leaky ReLU}(x) = \max(\alpha x, x)$
 
 - **Sigmoid**:
 $\sigma(x) = \frac{1}{1 + e^{-x}}$

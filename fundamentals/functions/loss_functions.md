@@ -35,7 +35,9 @@ The BCE loss function calculates the average loss over all samples in the datase
 
 The Cross-Entropy (CE) loss function is a widely used metric in multi-class classification tasks. It measures the difference between two probability distributions: the true distribution $y_{i,c}$ and $\hat{y}_{i,c}$ the predicted distribution for each sample in the dataset.
 
-$$ CE = -\frac{1}{N} \sum_{i=1}^{N} \sum_{c=1}^{C} y_{i,c} \log(\hat{y}_{i,c}) $$
+$$ 
+CE = -\frac{1}{N} \sum_{i=1}^{N} \sum_{c=1}^{C} y_{i,c} \log(\hat{y}_{i,c}) 
+$$
 Where:
 
 - $CE$ is the Cross Entropy Loss

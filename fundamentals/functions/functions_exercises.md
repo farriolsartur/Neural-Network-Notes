@@ -33,7 +33,7 @@ Given the names of the activation functions below, write down their mathematical
 
 ### 3. Explain the Vector Input/Output Function
 
-Which activation function has a vector as input/output instead of a scalar? WHat does it imply?
+Which activation function has a vector as input/output instead of a scalar? What does it imply?
 
 
 ### 4. Compute the Gradient of the ReLU Function

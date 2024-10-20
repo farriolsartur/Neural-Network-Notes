@@ -43,6 +43,11 @@ This equation scales the gradient by $(1 - \beta)$, effectively computing an exp
    - **Standard Momentum (without dampening):** Better at accumulating velocity, leading to faster convergence but may experience larger oscillations.
    - **Dampened Momentum (with EMA):** Provides greater numerical stability and better dampens oscillations but may not accelerate convergence as effectively.
 
+## Hyperparameters:
+
+- **Learning Rate ($\alpha$):** Typically set to a small value (e.g., 0.01 or 0.001), the learning rate controls how large the updates to the parameters will be. It requires tuning depending on the problem.
+- **Momentum Coefficient ($\beta$):** A value between 0 and 1 (commonly set to 0.9) that determines how much of the previous velocity is retained. Higher values accumulate more momentum, but if too high, may lead to overshooting.
+
 ## Conclusion:
 
 SGD with momentum improves optimization by combining the benefits of accelerated convergence and reduced oscillations. The choice between using standard momentum or its dampened variant depends on the specific optimization problem and the desired balance between speed and stability.

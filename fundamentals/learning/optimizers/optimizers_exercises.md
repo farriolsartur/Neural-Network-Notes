@@ -34,45 +34,47 @@ Write down all the formulas used in the Adam optimizer, explaining each componen
 
 ### 4. Adam Optimizer Formulas
 
-**Answer:**  
+**Answer:**
 
 The Adam optimizer updates parameters using the following formulas:
 
-1. **Initialize** the first moment vector $m_0$ and the second moment vector $v_0$ to zeros.
+1. **Initialize** the first moment vector $v_0$ and the second moment vector $E_0$ to zeros.
 
 2. **At each iteration $t$**, compute the gradients:
    $g_t = \frac{\partial J}{\partial \theta_{t-1}}$
 
 3. **Update biased first moment estimate**:
-   $m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$
+   $v_t = \beta_1 v_{t-1} + (1 - \beta_1) g_t$
 
 4. **Update biased second moment estimate**:
-   $v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$
+   $E_t = \beta_2 E_{t-1} + (1 - \beta_2) g_t^2$
 
 5. **Compute bias-corrected first moment estimate**:
-   $\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$
+   $\hat{v}_t = \frac{v_t}{1 - \beta_1^t}$
 
 6. **Compute bias-corrected second moment estimate**:
-   $\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$
+   $\hat{E}_t = \frac{E_t}{1 - \beta_2^t}$
 
-7. **Update parameters**:
-   $\theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$
+7. **Calculate parameter-Specific Learning Rate**:
+   $\alpha_t = \frac{\eta}{\sqrt{\hat{E}_t} + \epsilon}$
+
+8. **Update parameters**:
+   $\theta_t = \theta_{t-1} - \alpha_t \hat{v}_t$
 
 **Where:**
 - $\theta_t$ are the parameters at iteration $t$.
-- $\alpha$ is the learning rate.
+- $\eta$ is the initial learning rate.
+- $\alpha_t$ is the parameter-specific learning rate at iteration $t$.
 - $\beta_1$ is the exponential decay rate for the first moment estimates (typically $0.9$).
 - $\beta_2$ is the exponential decay rate for the second moment estimates (typically $0.999$).
 - $\epsilon$ is a small constant to prevent division by zero (typically $10^{-8}$).
 
 **Explanation of Each Component:**
 
-- **First Moment Estimate ($m_t$)**: Represents the exponentially decaying average of past gradients, acting like momentum.
-
-- **Second Moment Estimate ($v_t$)**: Represents the exponentially decaying average of past squared gradients, helping to adapt the learning rate.
-
-- **Bias Correction ($\hat{m}_t$ and $\hat{v}_t$)**: Adjusts the estimates to account for their initialization at zero, providing unbiased estimates.
-
-- **Parameter Update ($\theta_t$)**: Updates the parameters by moving in the direction determined by the adjusted first moment, scaled by the adjusted second moment.
+- **First Moment Estimate ($v_t$)**: Represents the exponentially decaying average of past gradients, acting like momentum.
+- **Second Moment Estimate ($E_t$)**: Represents the exponentially decaying average of past squared gradients, helping to adapt the learning rate.
+- **Bias Correction ($\hat{v}_t$ and $\hat{E}_t$)**: Adjusts the estimates to account for their initialization at zero, providing unbiased estimates.
+- **Parameter-Specific Learning Rate ($\alpha_t$)**: Computes a new learning rate for each parameter at each iteration, taking into account the bias-corrected second moment estimate.
+- **Parameter Update ($\theta_t$)**: Updates the parameters by moving in the direction determined by the bias-corrected first moment estimate, scaled by the parameter-specific learning rate.
 
 Adam effectively combines the benefits of two other extensions of stochastic gradient descent: **AdaGrad** (adaptive learning rates) and **Momentum** (exponentially weighted average of gradients), making it highly effective for a wide range of optimization problems.

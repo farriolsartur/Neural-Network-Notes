@@ -4,20 +4,22 @@ Adam is an optimization algorithm that combines the advantages of two other exte
 
 ## Update Equations:
 
-1. **Compute Gradient:**
+1. **Initialize** the first moment vector $v_0$ and the second moment vector $E_0$ to zeros.
+
+2. **Compute Gradient:**
 
    $g_t = \frac{\partial J}{\partial \theta_{i-1}}$
 
    - $g_t$ is the gradient of the cost function $J$ with respect to the parameters $\theta$ at iteration $t-1$.
 
-2. **Update Biased First Moment Estimate (Mean of Gradients):**
+3. **Update Biased First Moment Estimate (Mean of Gradients):**
 
    $v_t = \beta_1 v_{t-1} + (1 - \beta_1) g_t$
 
    - $v_t$ is the first moment estimate (the mean of the gradients).
    - $\beta_1$ is the exponential decay rate for the first moment estimates (typically $\beta_1 = 0.9$).
 
-3. **Update Biased Second Moment Estimate (Uncentered Variance of Gradients):**
+4. **Update Biased Second Moment Estimate (Uncentered Variance of Gradients):**
 
    $E_t = \beta_2 E_{t-1} + (1 - \beta_2) g_t^2$
 
@@ -25,22 +27,22 @@ Adam is an optimization algorithm that combines the advantages of two other exte
    - $\beta_2$ is the exponential decay rate for the second moment estimates (typically $\beta_2 = 0.999$).
    - $g_t^2$ denotes element-wise squaring of $g_t$.
 
-4. **Compute Bias-Corrected First Moment Estimate:**
+5. **Compute Bias-Corrected First Moment Estimate:**
 
    $\hat{v}_t = \frac{v_t}{1 - \beta_1^t}$
 
-5. **Compute Bias-Corrected Second Moment Estimate:**
+6. **Compute Bias-Corrected Second Moment Estimate:**
 
    $\hat{E}_t = \frac{E_t}{1 - \beta_2^t}$
 
-6. **Calculate Parameter-Specific Learning Rate:**
+7. **Calculate Parameter-Specific Learning Rate:**
 
    $\alpha_t = \frac{\eta}{\sqrt{\hat{E}_t} + \epsilon}$
 
    - $\eta$ is the global learning rate (often set to $0.001$).
    - $\epsilon$ is a small constant (e.g., $1 \times 10^{-8}$) added for numerical stability.
 
-7. **Parameter Update:**
+8. **Parameter Update:**
 
    $\theta_t = \theta_{t-1} - \alpha_t \hat{v}_t$
 
@@ -78,6 +80,13 @@ By combining **momentum** (first moment estimates) and **adaptive learning rates
 - **Potential for Non-Convergence:** In some cases, Adam may not converge to the optimal solution and can get stuck in local minima.
 - **Overfitting Risk:** Due to its adaptability, Adam may overfit to training data if proper regularization techniques are not employed.
 - **Complexity:** The algorithm introduces additional computational overhead due to the calculation of first and second moment estimates and bias correction.
+
+## Hyperparameters:
+
+- **Initial Learning Rate ($\eta$):** Typically set between $0.001$ and $0.1$. However, depending on the task, this may need to be tuned to optimize performance.
+- **First Moment Decay Rate ($\beta_1$):** Default value is $0.9$, which controls the influence of past gradients on the first moment estimate.
+- **Second Moment Decay Rate ($\beta_2$):** Typically set to $0.999$. It influences how much past squared gradients affect the second moment estimate.
+- **Epsilon ($\epsilon$):** A small constant added for numerical stability, typically set to $1 \times 10^{-8}$ to avoid division by zero during parameter updates.
 
 ## Conclusion:
 

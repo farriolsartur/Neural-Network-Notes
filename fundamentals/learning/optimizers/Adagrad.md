@@ -46,6 +46,11 @@ Adagrad is an optimization algorithm that adapts the learning rate for each para
 * **Learning Rate Decay:** The continual accumulation of squared gradients can lead to the effective learning rate becoming infinitesimally small, potentially halting the learning process prematurely.
 * **No Emphasis on Recent Gradients:** Adagrad treats all past gradients equally, without giving more importance to recent gradients, which might be more indicative of the current direction towards the minimum.
 
+## **Hyperparameters:**
+
+- **Initial Learning Rate ($\eta$):** Typically set to $0.01$, but may require tuning depending on the specific task. This value controls the scale of the learning rate and has a large influence on convergence.
+- **Epsilon ($\epsilon$):** A small constant added to prevent division by zero, usually set to $1 \times 10^{-8}$ or another small number to ensure numerical stability.
+
 ## **Conclusion:**
 
 Adagrad introduces an element-wise adaptive learning rate to the optimization process, enabling more efficient training, especially in scenarios with sparse data. While it offers the advantage of reducing the need for manual learning rate tuning, its propensity for the learning rate to decrease indefinitely can be a drawback. Subsequent algorithms like RMSProp and Adam have built upon Adagrad to mitigate these limitations by incorporating mechanisms that emphasize recent gradients over older ones.

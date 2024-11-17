@@ -1,3 +1,4 @@
 # Ignore all Python files
+scripts/
 *.py
 *draft*

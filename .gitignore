@@ -2,3 +2,4 @@
 scripts/
 *.py
 *draft*
+tmp/
